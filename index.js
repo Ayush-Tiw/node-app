@@ -5,7 +5,7 @@
 // const express=require("express");//importing express
 
 import { MongoClient} from "mongodb";
-import express from "express";//importing express
+import express from "express"; //importing express
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -13,7 +13,8 @@ dotenv.config();
 // environment variables
 const app=express();
 
-const PORT=4000;
+// const PORT=4000;
+const PORT=process.env.PORT;
 // now we have converted all the apis to mongodb so we now dont need this data
 const movies=[
     {
@@ -91,12 +92,18 @@ app.get("/",function(request,response){
 app.get("/movies",async function(request,response){
     // db.movies.find({})
     // find does not return array it return cursor,cursor is nothing but pagination,they show in pagination because performance will be better(give first 20 result ),cursor->array(toArray())
-    const movies=await client.db("guvi-db").collection("movies").find({}).toArray();
+
+    if(request.query.rating){
+        request.query.rating= +request.query.rating
+    }
+    const movies=await client.db("guvi-db").collection("movies").find(request.query).toArray();
     console.log("movies" + movies)
     response.send(movies)
+    console.log(request.query)
+    // but if there was rating in the query then first convert to number
 });
 
-// get movi by id
+// get movie by id
 app.get("/movies/:id",async function(request,response){
     const {id}=request.params;
     console.log(request.params,id)
@@ -120,6 +127,34 @@ app.post("/movies", async function(request,response){
 const result=await client.db("guvi-db").collection("movies").insertMany(data)
     response.send(result)
 });
+
+// delete a movie
+app.delete("/movies/:id",async function(request,response){
+    const {id}=request.params;
+    console.log(request.params,id)
+    // db.movies.deleteOne({id:"101"})
+    // const movie=movies.filter((mv)=>mv.id=id)//it will return array
+    // const movie=movies.find((mv)=>mv.id===id)//find will always return element (object in this case) not array
+
+    const result= await client.db("guvi-db").collection("movies").deleteOne({id:id})
+    // response.send(movies)
+    console.log(result)
+    result.deletedCount>0 ? response.send({mesg:"movie Deleted SuccesFully"}) :response.status(404).send({msg:"Movie not found"})
+});
+
+// update a movie(update is combination of get and post)
+app.put("/movies/:id",async function(request,response){
+    const {id}=request.params;
+    console.log(request.params,id)
+    const data=request.body;
+//   db.movies.updateOne({id:"101"},{$set:data})
+
+const result= await client.db("guvi-db").collection("movies").updateOne({id:id},{$set:data})
+
+response.send(result)
+});
+
+
 
 // app.listen(3000)//define in which port it should run
 app.listen(PORT,()=>console.log(`App started in ${PORT}`))
