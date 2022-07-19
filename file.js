@@ -5,10 +5,13 @@ const fs= require("fs");
 // const fs=require("fs");
 // fs.writeFile("names.txt",data,(err)=>{
 //     console.log("completed writing!!")//this is for confirmation when we write huge file to check if file is complte or not
+ // callback is usefull if we writting huge file the after installing whole file send messge in console complete writing
 //     //err is for error if any
 // })
 // error may be file does not exit
 // permission not available to access file
+
+// create file
 
 // const fs=require("fs");
 
@@ -80,6 +83,7 @@ const quote3 ="make everyday a little less ordinarily"
 //     console.log("writing completed")
 // })
 // this will completely replace the content of nice.txt
+
 // to add to existing file we should do appendFile instead of writeFile
 
 // fs.appendFile("./nice.txt","\n"+quote3,(err)=>{

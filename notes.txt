@@ -1,0 +1,11 @@
+[5,6,4,2,8,9].filter((n)=>n>5)
+output=[6,8,9]
+[5,6,4,2,8,9].find((n)=>n>5)
+find always return en element not array so first element it will display firment element greater then 5
+output=6
+
+react deployed in netlify
+node app in heroku
+mongo in atlas
+
+//AUTHENTICATION

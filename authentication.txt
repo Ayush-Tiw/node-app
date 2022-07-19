@@ -1,0 +1,118 @@
+Authentication and authorization
+
+imagine if login part of your app gets break ,all user will be furious 
+//so it is very sensitive 
+
+authentication is most basic people user expecting but it is also crucial we should keep it secure
+//user expect security 
+
+//difference between authentication and authorisation
+
+authentication-->checking who you are
+authorisation-->what you can do
+
+// some part of building of office(server room) only IT admin
+
+
+when we login from react with username and password then node will check whether it is valid or not,if it is invalid it will throw u out,if it is valid node will send a token to react and give access 
+
+now when we perform some operation like delete movie,then we have to send delte api with token
+//as token is require for every operation ,so it is store in browser in local storage or cookies
+
+//then api and token goes to node ,then again it will check for token ,if it is invalid it will throw to login page,if token is valid then another check happen that does the person has to access to delete it(admin user has all the access in app),it does not have access,if have access then delete will happen and we get successfull message 
+
+//this is entire flow of any app
+
+//first do authentication of user
+//then it has access for particular thing
+
+
+//lets discuss step before login i.e, signup
+//when user signup we have to store username and password in DB
+//but it is not  good to store password as plain text because generally we keep same password to every thing so in case if hacker breaches database nd get password then he will check bank accounts etc with same password and if it gets cracked account gets empty(advice is to keep different password)
+
+//so if a employee develop any app knows all password,leaves the company then he can sell to dark web ,
+so  password should not be visible to employee also
+
+//so how to store password in database
+//1.encryption-->it is set in particular manner like this is this
+//the problem is if we know the trick(decrypt) we can crack any password
+//this is why encryption is not effective
+//todays computer can crack encryption in seconds
+//problem with encryption is that if know trick we can reverse it
+//we can convert english to chinese and can again convert chinese to english
+
+//we do hashing for signup
+//but with hash once hash function convert plain text to hashed text we can not reverse it to get plain text that why it is called one way function
+//this is algowrithm which is impossible to convert back to plain text
+
+//like if we change one word then whole hashed text gets changed
+//fingerprint is natural looking hash value
+//we cannot reverse it to get plain text that
+//so we use it for password
+
+//for different user(a and b) with same password(in plain text) we get same hash value
+//and another user(c) with different password(in plain text)
+//then in hacker perspective we try to crack password of a ,so that we can get password of b also,two kill with one arrow
+//what hacker do they convert common used password to hashed text,and compare withh the user hashed text if they get matched hacker will hack your account
+//to defend our user its database engineer its our job to protect them,what we do is if user give password in list of common password we add random string to it and hashed that plain text then hashed value will now be different for even same password given by user
+//there will be no similar hashed text so it will be impossible to crack
+//adding string randomly is called salting technique(make every password different)
+
+//more round of salting more complex will be the string so it make more complex hash so we get more security
+//but problem is more round of salting you do more time it take to convert
+//when we are salting, the user are trying to sign up ,the user prefer less time to sign up,so less round of salting is we should
+//so we have to set up balance between security and good user experience,so we go for 10 rounds of salting(take 4 secs) to balance between two
+//banking thing can do 20 rounds of salting
+//first do sign up process to hash it we use bcrypt package(install it)
+
+
+now build another api for sign up ,lets build first in postman first
+//we choose post method
+//create request signup user
+//give data in body json{"username":"Ayush","password":""ayush123}
+//now make another api(359) /signup
+//now check in postman and click send and it will insert
+//can check in atlas also,but it store password as plain text
+//now before sending the password to db we should first hash it 
+//we convert the password to has
+//create a function genHashedPassword(password){}
+///import bcrypt
+//put that function to users.js
+//we are getting two thing from body of post man we can destructure it users.js
+//now after sending in postman we can check it in atlas ,and it has hashed password
+
+
+//but here one problem in code that if in post man if we send then it will again added to atlas,problem will be multipe user with same username in database,but username should be unique and
+
+//logic should be when we add user there should not be existing user
+//write function userFromdb
+
+//we create condition like if username exist then show username exist,if no user exist then allow to user to create
+
+//the validation should be present in both backend(from hackers) and frontend(for good user experience)
+//this completes sign up process
+
+
+//now we do login set up
+//we use post method for login
+//create request Login in post man,and in body username and password should be given
+//lets build login api
+
+//now after login we should give token
+//to access any operation with token we need to generate this token ,we need package jsonwebtoken(jwt)
+//sometime we provide time for token also if by something hacker gets it he cannot use it after time,another layer of security
+//now after setting up token 
+
+//now we well set our route that when we give token only then can access those route,so we should give token in header in postman,because not all api have body(find)
+//we should give key(x-auth-token) value(token vaue) in header in postman 
+//we now need common place so that they intercept if token is valid we give access(when token is given only then give access)
+//we need common place so to check if has token then allow user to intercept any request
+//to do it we need middleware so will build a custom middleware
+
+//go to auth.js
+
+
+
+
+

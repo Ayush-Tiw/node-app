@@ -153,12 +153,13 @@ db.collection.aggregate([
 // node js is place to write javascript,javascript can be written in browser also ,but browser cannot create, read, update or delete any file
 // browser are restricted to all these
 
-//javascript is single thread(can execute only one line at a time) ,ex-only one cook and asynchronous language-->
+//javascript is single thread(can execute only one line at a time) ,ex-only one cook and asynchronous(smart) language-->
 // java is multithread(can execute multiple lines at a time),ex->multiple cook ,it is faster than javascript
 
+// stack -->work on first in last out,or last in first out
 
 // setTimeOUt ia not part of JS,its part browser's code(Webapis)
-// anything which take time comes under API's
+// anything which take time comes under web API's
 // when we try to console setTiemOut its shows native code means not written in Javscript
 
 // js can run in call stack only not in webapis 
@@ -186,4 +187,9 @@ db.collection.aggregate([
 
 // node js took the engine from chrome(V8 engine)
 // then added a thin layer on top of V8 engine called NODE.JS BINDINGS(Node API),that can do all os operation(access files,CRUD etc)
-// 
+
+
+// in embedded documents we can do  nesting upto 100 levels and upto 16mb per documents
+// mongodb automatically creates unique id by itself represent with _id which has objectId as its data types
+
+// mongodb 
