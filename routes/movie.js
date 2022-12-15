@@ -2,7 +2,7 @@ import express from "express"
 const router= express.Router();
 import {client} from "../index.js"
 import {objectId} from "mongodb"
-import  {auth}  from "../middleware.auth.js"
+import  {auth}  from "../middleware/auth"
 
 // // get all movies
 // app.get("/movies",async function(request,response){

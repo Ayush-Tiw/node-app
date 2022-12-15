@@ -53,53 +53,7 @@ const PORT=process.env.PORT;
 
 app.use(cors())
 // now we have converted all the apis to mongodb so we now dont need this data
-const movies=[
-    {
-        id:"100",
-        image:"https://englishtribuneimages.blob.core.windows.net/gallary-content/2021/6/Desk/2021_6$largeimg_977224513.JPG" ,
-        title:'RRR',
-        ratings:8.8,
-        description:"RRR is an upcoming Indian Telugu-language period action drama film directed by S. S. Rajamouli, and produced by D. V. V. Danayya of DVV Entertainments.",
-        trailer:"https://www.youtube.com/embed/NgBoMJy386M"
 
-    },
-    {
-        id:"101",
-        image: "https://m.media-amazon.com/images/M/MV5BMTM0MDgwNjMyMl5BMl5BanBnXkFtZTcwNTg3NzAzMw@@._V1_FMjpg_UX1000_.jpg",
-        title:'Iron man 2',
-        ratings:7,
-        description:"With the world now aware that he is Iron Man, billionaire inventor Tony Stark (Robert Downey Jr.) faces pressure from all sides to share his technology with the military. He is reluctant to divulge the secrets of his armored suit, fearing the information will fall into the wrong hands. With Pepper Potts (Gwyneth Paltrow) and Rhodes (Don Cheadle) by his side, Tony must forge new alliances and confront a powerful new enemy.",
-        trailer:"https://www.youtube.com/embed/RHT1CIrcLCk"
-
-    },
-    {
-        id:"102",
-        image:"https://m.media-amazon.com/images/M/MV5BY2Y5ZWMwZDgtZDQxYy00Mjk0LThhY2YtMmU1MTRmMjVhMjRiXkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg" ,
-        title:'Jai Bhim',
-        ratings:8.8,
-        description:"A tribal woman and a righteous lawyer battle in court to unravel the mystery around the disappearance of her husband, who was picked up the police on a false case",
-        trailer:"https://www.youtube.com/embed/nnXpbTFrqXA" 
-
-    },
-    {
-        id:"103",
-        image:"https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_crd_05.jpg" ,
-        title:'The Avengers',
-        ratings:8,
-        description:"Marvel's The Avengers (classified under the name Marvel Avengers Assemble in the United Kingdom and Ireland), or simply The Avengers, is a 2012 American superhero film based on the Marvel Comics superhero team of the same name.",
-        trailer:"https://www.youtube.com/embed/LPhqL4DqzBg"
-
-    },
-    {
-        id:"104",
-        image:"https://m.media-amazon.com/images/I/A1JVqNMI7UL._SL1500_.jpg" ,
-        title:'Interstellar',
-        ratings:8.8,
-        description:"When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans",
-        trailer:"https://www.youtube.com/embed/zSWdZVtXT7E"
-
-    }
-]
 // for now we are getting movies data locally from movies array
 // app.get("/",function(request,response){
 //     response.send("Hello Ayush,hi")
@@ -181,6 +135,7 @@ const movies=[
 // now when want like when we click on postman to create or add movie(create request create movie)
 // data to insert in mongodb data base to be written in body in raw then json
 // when we paste and click send,it will cannot create or post because it dont have any api
+
 // so first create an api
 //  app.post("/movies",express.json(), async function(request,response){
     // app.post("/movies", async function(request,response){

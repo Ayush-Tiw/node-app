@@ -1,4 +1,4 @@
-Authentication and authorization
+Authentication-->verifies the identity of user and authorization-->determine the access rights of user
 
 imagine if login part of your app gets break ,all user will be furious 
 //so it is very sensitive 

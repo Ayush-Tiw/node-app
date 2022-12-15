@@ -5,7 +5,7 @@ export const auth=(request,response,next)=>{
     // first get the token from request(token is part of request)
     try{
     const token=request.header('x-auth-token');
-    consoe.log(token)
+    console.log(token)
     jwt.verify(token,process.env.SECRET_key)
     next();
     }catch(err){

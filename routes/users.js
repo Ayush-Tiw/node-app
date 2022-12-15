@@ -19,8 +19,9 @@ async function getUserByName(username){
 
 router.post("/signup", async function(request,response){
     // const data=request.body;
+    // console.log(data)
     const {username,password}=request.body;
-    console.log(data)
+   
 // db.users.insertOne(data)
 
 const userFromDB= await getUserByName(username)
@@ -42,7 +43,6 @@ else{
     const hashedPassword= await genHashedPassword(password)
 console.log(hashedPassword)
 const result=await client.db("guvi-db").collection("users").insertOne(data)
-// const result=await createUser({
 //     username: username,
 //     password:hashedPassword,
 // })
